@@ -26,7 +26,7 @@ const CandidateRow = ({ candidate, index, fetchCandidates, fetchEmployees }) => 
 
       } else if (newStatus === "Rejected") {
         // Delete candidate from database
-      const deleteCandidateUrl = new URL(`${candidate._id}`, process.env.REACT_APP_BACKEND_URL).toString();
+      const deleteCandidateUrl = new URL(`/delete${candidate._id}`, process.env.REACT_APP_BACKEND_URL).toString();
         await axios.delete(deleteCandidateUrl);
       }
 
