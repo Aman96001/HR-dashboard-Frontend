@@ -18,7 +18,7 @@ export default function Dashboard() {
   // Fetch candidates from backend
   const fetchCandidates = async (searchTerm = "") => {
     try {
-      const getCandidatesUrl = new URL(`${searchTerm}`, process.env.REACT_APP_BACKEND_URL).toString();
+      const getCandidatesUrl = new URL(`/getCandidates/${searchTerm}`, process.env.REACT_APP_BACKEND_URL).toString();
 
       const response = await axios.get(getCandidatesUrl);
       setCandidates(response.data);
