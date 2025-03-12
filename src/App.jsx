@@ -16,17 +16,20 @@ export const EmployeeContext = createContext();
 function App() {
   const [employees, setEmployees] = useState([]);
 
-  // ✅ Wrap fetchEmployees in useCallback to prevent re-creation
+  // Wrap fetchEmployees in useCallback to prevent re-creation
   const fetchEmployees = useCallback(async () => {
     try {
-      const response = await axios.get("http://localhost:8080/getEmployees");
+  
+      const getEmployeesUrl = new URL("/getEmployees", process.env.REACT_APP_BACKEND_URL).toString();
+      console.log(getEmployeesUrl,'myurl');
+      const response = await axios.get(getEmployeesUrl);
       setEmployees(response.data);
     } catch (error) {
       console.error("Error fetching employees:", error);
     }
   }, []);
 
-  // ✅ Fetch employees only once on mount
+  // Fetch employees only once on mount
   useEffect(() => {
     fetchEmployees();
   }, [fetchEmployees]);

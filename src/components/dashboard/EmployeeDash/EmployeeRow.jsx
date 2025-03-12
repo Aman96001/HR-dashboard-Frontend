@@ -2,6 +2,7 @@ import { useState, useRef } from "react";
 import axios from "axios";
 
 const EmployeeRow = ({ employee, index, fetchEmployees }) => {
+  //eslint-disable-next-line no-unused-vars
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
@@ -9,7 +10,9 @@ const EmployeeRow = ({ employee, index, fetchEmployees }) => {
   const handleDelete = async () => {
     if (window.confirm("Are you sure you want to delete this employee?")) {
       try {
-        await axios.delete(`http://localhost:8080/deleteEmployee/${employee._id}`); //call api to delete emploee
+        const deleteEmployeesUrl = new URL(`${employee._id}`, process.env.REACT_APP_BACKEND_URL).toString();
+      
+        await axios.delete(deleteEmployeesUrl); //call api to delete emploee
         fetchEmployees();
       } catch (error) {
         console.error("Error deleting employee:", error);

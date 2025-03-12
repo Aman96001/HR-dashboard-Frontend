@@ -15,7 +15,8 @@ const CandidateRow = ({ candidate, index, fetchCandidates, fetchEmployees }) => 
     try {
       if (newStatus === "Selected") {
         // Move candidate to Employee table
-        await axios.post("http://localhost:8080/addEmployee", {
+        const backendURL = new URL("/addEmployee", process.env.BACKEND_URL).toString();
+        await axios.post(backendURL, {
           fullName: candidate.fullName,
           email: candidate.email,
           phone: candidate.phone,
@@ -25,7 +26,8 @@ const CandidateRow = ({ candidate, index, fetchCandidates, fetchEmployees }) => 
 
       } else if (newStatus === "Rejected") {
         // Delete candidate from database
-        await axios.delete(`http://localhost:8080/delete/${candidate._id}`);
+      const deleteCandidateUrl = new URL(`${candidate._id}`, process.env.REACT_APP_BACKEND_URL).toString();
+        await axios.delete(deleteCandidateUrl);
       }
 
       fetchCandidates(); // Refresh candidate list

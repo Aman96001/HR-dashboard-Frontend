@@ -48,7 +48,9 @@ const Register = () => {
 
     try {
       // Send data to backend
-      const response = await axios.post("http://localhost:8080/register", {
+      const registerUrl = new URL("/register", process.env.REACT_APP_BACKEND_URL).toString();
+
+      const response = await axios.post(registerUrl, {
         fullName: formData.fullName,
         email: formData.email,
         password: formData.password,
