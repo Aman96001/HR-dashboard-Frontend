@@ -6,7 +6,7 @@ const LeaveTable = () => {
   const [leaves, setLeaves] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:8080/leaves")
+    axios.get(`${process.env.REACT_APP_BACKEND_URL}/Leaves`)
       .then(response => setLeaves(response.data))
       .catch(error => console.error("Error fetching leaves:", error));
   }, []);
