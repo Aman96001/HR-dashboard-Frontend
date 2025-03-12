@@ -18,9 +18,9 @@ export default function Dashboard() {
   // Fetch candidates from backend
   const fetchCandidates = async (searchTerm = "") => {
     try {
-      const response = await axios.get(
-        `http://localhost:8080/getCandidates?search=${searchTerm}`
-      );
+      const getCandidatesUrl = new URL(`${searchTerm}`, process.env.REACT_APP_BACKEND_URL).toString();
+
+      const response = await axios.get(getCandidatesUrl);
       setCandidates(response.data);
       setFilteredCandidates(response.data);
     } catch (error) {
@@ -44,7 +44,9 @@ export default function Dashboard() {
   // Handle adding a new candidate
   const handleAddCandidate = async (newCandidate) => {
     try {
-      await axios.post("http://localhost:8080/addCandidates", newCandidate);
+      const addCandidatesUrl = new URL("/addCandidates", process.env.REACT_APP_BACKEND_URL).toString();
+
+      await axios.post(addCandidatesUrl, newCandidate);
       window.location.reload();
       fetchCandidates(); // Refresh list after adding
       setIsModalOpen(false);

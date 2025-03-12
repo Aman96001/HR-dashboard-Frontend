@@ -55,12 +55,18 @@ const CandidateModal = ({ onClose, refresh, candidate }) => {
     }
 
     setLoading(true);
+
     try {
+
       if (candidate) {
-        await axios.put(`http://localhost:8080/update/${candidate._id}`, formData);
+      const updateCandidateUrl = new URL(`${candidate._id}`, process.env.REACT_APP_BACKEND_URL).toString();
+
+        await axios.put(updateCandidateUrl, formData);
         toast.success("Candidate updated successfully!");
       } else {
-        await axios.post("http://localhost:8080/addcandidates", formData);
+      const addCandidateUrl = new URL("/addcandidates", process.env.REACT_APP_BACKEND_URL).toString();
+        
+        await axios.post(addCandidateUrl, formData);
         window.location.reload();
         toast.success("Candidate added successfully!");
       }

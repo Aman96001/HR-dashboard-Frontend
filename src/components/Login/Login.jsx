@@ -33,7 +33,9 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:8080/login", formData);
+      const LoginUrl = new URL("/login", process.env.REACT_APP_BACKEND_URL).toString();
+
+      const response = await axios.post(LoginUrl, formData);
 
       if (response.data.token) {
         // Store the token in localStorage

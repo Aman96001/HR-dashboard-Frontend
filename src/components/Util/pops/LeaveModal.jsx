@@ -29,7 +29,9 @@ const LeaveModal = ({ onClose, refresh }) => {
     e.preventDefault();
     setLoading(true);
     try {
-      await axios.post("http://localhost:8080/add-leave", formData);
+      const addLeaveUrl = new URL("/add-leave", process.env.REACT_APP_BACKEND_URL).toString();
+
+      await axios.post(addLeaveUrl, formData);
       toast.success("Leave request added successfully!");
       refresh();
       setTimeout(() => onClose(), 2000);
