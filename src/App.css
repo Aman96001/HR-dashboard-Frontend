@@ -1,0 +1,51 @@
+
+
+.btn{
+    border-radius: 20px;
+    background-color: #4D007D;
+    width: 100%;
+    color: #ffffff;
+
+}
+/* container for authentication */
+.auth-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #ffffff;
+}
+/* inputfields */
+.inputfield{
+    width: 100%;
+    height: 30px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    padding: 5px;
+  }
+
+
+/* logo design */
+  .logo{
+    display: flex;
+    margin-top: 2rem;
+    margin-left: 1.5rem;
+    gap: 4px;
+  }
+  .logo p{
+    font-size: 20px;
+    font-weight: bolder;
+    padding-top: 4px;
+    color: #4D007D;
+  }
+  .square-box {
+    width: 32px;  
+    height: 32px; 
+    border: 4px solid #4D007D; 
+    border-radius: 4px;
+  }
+/* make text lighter */
+  .text-light{
+    font-weight: lighter;
+    color: #A4A4A4
+  }
