@@ -19,7 +19,12 @@ export default function Dashboard() {
   const fetchCandidates = async (searchTerm = "") => {
     try {
       
-      const response = await axios.get(`${process.evn.REACT_APP_BACKEND_URL}/getCandidates/${searchTerm}`);
+      const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/getCandidates`, {
+        params: {
+          search: searchTerm,
+        },
+      });
+      console.log(response.data);
       setCandidates(response.data);
       setFilteredCandidates(response.data);
     } catch (error) {

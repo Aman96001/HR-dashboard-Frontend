@@ -20,8 +20,8 @@ function App() {
   const fetchEmployees = useCallback(async () => {
     try {
   
-      const getEmployeesUrl = new URL("/getEmployees", process.env.REACT_APP_BACKEND_URL).toString();
-      const response = await axios.get(getEmployeesUrl);
+      
+      const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/getEmployees`);
       setEmployees(response.data);
     } catch (error) {
       console.error("Error fetching employees:", error);

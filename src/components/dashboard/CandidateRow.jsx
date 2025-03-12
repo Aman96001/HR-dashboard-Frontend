@@ -1,6 +1,8 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import axios from "axios";
+
 import CandidateModal from "../Util/pops/CandidateModal";
+import "react-toastify/dist/ReactToastify.css";
 
 const CandidateRow = ({ candidate, index, fetchCandidates, fetchEmployees }) => {
   const [selectedStatus, setSelectedStatus] = useState(candidate.status);
@@ -8,32 +10,43 @@ const CandidateRow = ({ candidate, index, fetchCandidates, fetchEmployees }) => 
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setDropdownOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   const handleStatusChange = async (e) => {
     const newStatus = e.target.value;
     setSelectedStatus(newStatus);
 
     try {
       if (newStatus === "Selected") {
-        // Move candidate to Employee table
-        const backendURL = new URL("/addEmployee", process.env.BACKEND_URL).toString();
-        await axios.post(backendURL, {
+        await axios.post(`${process.env.REACT_APP_BACKEND_URL}/addEmployee`, {
           fullName: candidate.fullName,
           email: candidate.email,
           phone: candidate.phone,
-          department: candidate.position|| "HR", // Default department
-          date: new Date().toISOString().split("T")[0], 
+          department: candidate.position || "HR",
+          date: new Date().toISOString().split("T")[0],
         });
-
+        alert('Candidate is added to Employee');
+        
       } else if (newStatus === "Rejected") {
-        // Delete candidate from database
-      
-        await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/delete/${candidate._id}`); //call api to delete candidate
+
+        alert('You have Rejected this candidate;')
       }
 
-      fetchCandidates(); // Refresh candidate list
-      fetchEmployees(); // Refresh employee list
+      fetchCandidates();
+      fetchEmployees();
     } catch (error) {
       console.error("Error updating status:", error);
+
     }
   };
 
@@ -46,13 +59,21 @@ const CandidateRow = ({ candidate, index, fetchCandidates, fetchEmployees }) => 
         <td>{candidate.phone}</td>
         <td>{candidate.position}</td>
         <td>
-          <select value={selectedStatus} onChange={handleStatusChange} className="inputfield">
+          <select
+            value={selectedStatus}
+            onChange={handleStatusChange}
+            className="inputfield"
+            style={{
+              // backgroundColor: selectedStatus === "Selected" ? "#d4edda" : selectedStatus === "Rejected" ? "#f8d7da" : "white",
+              color: selectedStatus === "Selected" ? "green" : selectedStatus === "Rejected" ? "red" : "black",
+            }}
+          >
             <option value="New">New</option>
             <option value="Selected">Selected</option>
             <option value="Rejected">Rejected</option>
           </select>
         </td>
-        <td>{candidate.experience} years</td> 
+        <td>{candidate.experience} years</td>
         <td>
           <div className="dropdown" ref={dropdownRef}>
             <button className="dropdown-btn" onClick={() => setDropdownOpen(!dropdownOpen)}>⋮</button>
@@ -73,6 +94,7 @@ const CandidateRow = ({ candidate, index, fetchCandidates, fetchEmployees }) => 
           candidate={candidate}
         />
       )}
+      
     </>
   );
 };
