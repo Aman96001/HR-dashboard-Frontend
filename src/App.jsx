@@ -21,7 +21,6 @@ function App() {
     try {
   
       const getEmployeesUrl = new URL("/getEmployees", process.env.REACT_APP_BACKEND_URL).toString();
-      console.log(getEmployeesUrl,'myurl');
       const response = await axios.get(getEmployeesUrl);
       setEmployees(response.data);
     } catch (error) {

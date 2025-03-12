@@ -59,9 +59,9 @@ const CandidateModal = ({ onClose, refresh, candidate }) => {
     try {
 
       if (candidate) {
-      const updateCandidateUrl = new URL(`${candidate._id}`, process.env.REACT_APP_BACKEND_URL).toString();
+    
 
-        await axios.put(updateCandidateUrl, formData);
+        await axios.put(`${process.env.REACT_APP_BACKEND_URL}/update/${candidate._id}`, formData);
         toast.success("Candidate updated successfully!");
       } else {
       const addCandidateUrl = new URL("/addcandidates", process.env.REACT_APP_BACKEND_URL).toString();
