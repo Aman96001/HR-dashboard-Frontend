@@ -1,0 +1,97 @@
+/* Background Overlay */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  /* Modal Box */
+  .modal-container {
+    background: white;
+    width: 700px;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    position: relative;
+    border: 1px solid #E5E5E5;
+  }
+  
+  /* Modal Header */
+  .modal-header {
+    background: #5B168F; /* Purple header */
+    padding: 15px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    color: white;
+    font-size: 18px;
+    text-align: center;
+    font-weight: bold;
+  }
+  
+  /* Form Input Fields */
+  .modal-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    gap: 15px;
+    padding: 20px;
+  }
+  
+  .modal-form input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+    font-size: 16px;
+    /* border: 1px #4a1273; */
+  }
+  .modal-form select{
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+    font-size: 16px;
+    /* border: 1px #4a1273; */
+  }
+  
+
+  
+  .modal-buttons {
+    display: flex;
+    gap: 10px;
+
+  }
+  
+  /* Save Button */
+  .save-btn {
+   height: 30px;
+    width: 60px;
+    text-align: center;
+  }
+  
+  .save-btn.enabled {
+    background: #5B168F;
+    cursor: pointer;
+  }
+  
+  .save-btn.enabled:hover {
+    background: #4a1273;
+  }
+  
+  /* Cancel Button */
+  .cancel-btn {
+
+    background: none;
+    border: none;
+    color: #5B168F;
+    cursor: pointer;
+    margin-top: 5px;
+    font-size: 14px;
+  }

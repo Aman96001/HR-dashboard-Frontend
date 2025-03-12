@@ -1,0 +1,72 @@
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .modal-container {
+    background: white;
+    border-radius: 10px;
+    width: 600px;
+    text-align: center;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+  }
+  
+  .modal-head {
+    height: 50px;
+    padding: 15px;
+    background: #4a0072;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .modal-content {
+    /* padding: 20px; */
+    font-size: 16px;
+  }
+  
+  .modal-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    padding: 20px;
+  }
+  
+  .logout-btn {
+    background: #4a0072;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .cancel-btn:hover {
+    background: #380054;
+  }
+  
+  .cancel {
+    background: white;
+    color: #d32f2f;
+    border: 2px solid #d32f2f;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .logout-btn:hover {
+    background: #d32f2f;
+    color: white;
+  }
+  
