@@ -29,11 +29,10 @@ const LeaveModal = ({ onClose, refresh }) => {
     e.preventDefault();
     setLoading(true);
     try {
-      const addLeaveUrl = new URL("/add-leave", process.env.REACT_APP_BACKEND_URL).toString();
 
-      await axios.post(addLeaveUrl, formData);
+      await axios.post(`${process.env.REACT_APP_BACKEND_URL}/addleave`, formData);
       toast.success("Leave request added successfully!");
-      refresh();
+      window.location.reload();
       setTimeout(() => onClose(), 2000);
     } catch (error) {
       toast.error(error.response?.data?.message);

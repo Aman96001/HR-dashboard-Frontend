@@ -60,7 +60,6 @@ const CandidateModal = ({ onClose, refresh, candidate }) => {
 
       if (candidate) {
     
-
         await axios.put(`${process.env.REACT_APP_BACKEND_URL}/update/${candidate._id}`, formData);
         toast.success("Candidate updated successfully!");
       } else {
