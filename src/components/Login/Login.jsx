@@ -92,7 +92,7 @@ const Login = () => {
               required
             />
 
-            {/* ✅ Added proper navigation links */}
+            {/*navigation links */}
             <p>
               <Link to="/forgot-password">
                 <small className="text-light">Forgot password? </small>
@@ -112,7 +112,7 @@ const Login = () => {
         </div>
       </div>
 
-      {/* ✅ Toast Messages */}
+      {/*Toast Messages */}
       <ToastContainer />
     </div>
   );
