@@ -39,7 +39,7 @@ const CandidateRow = ({ candidate, index, fetchCandidates, fetchEmployees }) => 
         
       } else if (newStatus === "Rejected") {
 
-        alert('You have Rejected this candidate;')
+        
       }
 
       fetchCandidates();
